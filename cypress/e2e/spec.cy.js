@@ -32,7 +32,7 @@ it('Lets you visit and access the website', () => {
   //userName
   cy.get("[class='recommended-input']")
     .eq(0)
-  .type("test15")
+  .type("test1515")
 
   //password
   cy.get("[class='recommended-input']")
@@ -82,7 +82,7 @@ it('Lets you visit and access the website', () => {
   //save
   cy.get("[class='groupxs-btn btn-outline btn-danger']", customTimeout)
     .click()
-  cy.get("[data-bind='click: ok']")
+  cy.get("[data-bind='visible: !hideOkButton()']")
     .click()
   cy.wait(longwait)
 
@@ -90,8 +90,9 @@ it('Lets you visit and access the website', () => {
   //gets the user profile and logs you out the website
   cy.get("[class='menu-item-icon fa fa-user']", customTimeout)
     .click()
-  cy.get("[class='gxs-button gxs-style-danger gxs-style-block']", customTimeout)
-    .click()
-  cy.get("[data-bind='click: ok']", customTimeout)
+  cy.get("[class='gxs-btn gxs-style-danger gxs-style-block']", customTimeout)
+  .contains('Sign Out')
+  .click()
+  cy.get("[data-bind='visible: !hideOkButton()']")
     .click()
   })

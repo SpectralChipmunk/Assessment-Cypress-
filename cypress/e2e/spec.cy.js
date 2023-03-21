@@ -31,6 +31,7 @@ it('Lets you visit and access the website', () => {
   
 })
 it('takes you to the users', () => {
+  cy.reload()
   cy.get("[class='menu-item-icon fa fa-users']", customTimeout)
     .click()
   cy.wait(longwait)

@@ -1,10 +1,19 @@
 /// <reference types="cypress" />
-
+import "cypress-localstorage-commands";
 describe('Reportheld admin app testing', () => { 
 })
 const customTimeout = {timeout:1000000}
 let targeturl = 'https://swbt-43857.alpha.reportheld-saas.com/admin/main.html#login'
 let longwait = 25000
+afterEach(()=>{
+      cy.saveLocalStorage();
+    
+    })
+    beforeEach(()=>{
+      cy.restoreLocalStorage();
+      cy.visit(targeturl, customTimeout)
+    
+    })
 
 
 it('Lets you visit and access the website', () => {
@@ -20,15 +29,15 @@ it('Lets you visit and access the website', () => {
     .click()
   cy.wait(longwait)
   
-
-
-  //takes you to the users interface
+})
+it('takes you to the users', () => {
   cy.get("[class='menu-item-icon fa fa-users']", customTimeout)
     .click()
   cy.wait(longwait)
 
-
-  //gets the input field for the credentials
+})
+it('Lets you input details in creating a new account', () => {
+   //gets the input field for the credentials
   //userName
   cy.get("[class='recommended-input']")
     .eq(0)
@@ -85,8 +94,8 @@ it('Lets you visit and access the website', () => {
   cy.get("[data-bind='visible: !hideOkButton()']")
     .click()
   cy.wait(longwait)
-
-
+})
+it('Logs you out the website', () => {
   //gets the user profile and logs you out the website
   cy.get("[class='menu-item-icon fa fa-user']", customTimeout)
     .click()
@@ -95,4 +104,5 @@ it('Lets you visit and access the website', () => {
   .click()
   cy.get("[data-bind='visible: !hideOkButton()']")
     .click()
-  })
+})
+
